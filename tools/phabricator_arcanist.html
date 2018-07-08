@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="../css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Arcanist 是访问Pabricator的命令行工具，它集成了静态分析(lint)，单元测试及代码review工作流类的功能，点击查看Arcanist官方文档。 安装(Linux/Mac OS X)Arcanist 需要php支持，安装Arcanist之前，需要先安装 php。之后将arcanist 的源码下载到本地(将下载的源码放在同一个目录)。 1234$ mkdir &amp;#123;some">
+<meta name="keywords" content="tools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phabricator Arcanist 基础使用">
+<meta property="og:url" content="http://www.riverlcn.com/tools/phabricator_arcanist.html">
+<meta property="og:site_name" content="川流不息">
+<meta property="og:description" content="Arcanist 是访问Pabricator的命令行工具，它集成了静态分析(lint)，单元测试及代码review工作流类的功能，点击查看Arcanist官方文档。 安装(Linux/Mac OS X)Arcanist 需要php支持，安装Arcanist之前，需要先安装 php。之后将arcanist 的源码下载到本地(将下载的源码放在同一个目录)。 1234$ mkdir &amp;#123;some">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-08T17:16:04.702Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phabricator Arcanist 基础使用">
+<meta name="twitter:description" content="Arcanist 是访问Pabricator的命令行工具，它集成了静态分析(lint)，单元测试及代码review工作流类的功能，点击查看Arcanist官方文档。 安装(Linux/Mac OS X)Arcanist 需要php支持，安装Arcanist之前，需要先安装 php。之后将arcanist 的源码下载到本地(将下载的源码放在同一个目录)。 1234$ mkdir &amp;#123;some">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.riverlcn.com/tools/phabricator_arcanist.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Phabricator Arcanist 基础使用 | 川流不息</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4bec3d5443cfd5fb342ab9add9b9157c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">川流不息</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-首页">
+    <a href="" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-分类">
+    <a href="" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+    <a href="" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-关于">
+    <a href="" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.riverlcn.com">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="River Liu">
+      <meta itemprop="description" content="一个软件工程师的开发/学习记录">
+      <meta itemprop="image" content="../images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="川流不息">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Phabricator Arcanist 基础使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-12-18 22:25:01" itemprop="dateCreated datePublished" datetime="2016-12-18T22:25:01+08:00">2016-12-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-09 01:16:04" itemprop="dateModified" datetime="2018-07-09T01:16:04+08:00">2018-07-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="../categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="#SOHUCS" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="tools/phabricator_arcanist.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="" class="leancloud_visitors" data-flag-title="Phabricator Arcanist 基础使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Arcanist</strong> 是访问<code>Pabricator</code>的命令行工具，它集成了静态分析(lint)，单元测试及代码review工作流类的功能，<a href="http://www.phabricator.com/docs/phabricator/article/Arcanist_User_Guide.html" target="_blank" rel="noopener">点击查看Arcanist官方文档</a>。</p>
+<h1 id="安装-Linux-Mac-OS-X"><a href="#安装-Linux-Mac-OS-X" class="headerlink" title="安装(Linux/Mac OS X)"></a>安装(Linux/Mac OS X)</h1><p><strong>Arcanist</strong> 需要<code>php</code>支持，安装Arcanist之前，需要先安装 php。之后将<code>arcanist</code> 的源码下载到本地(将下载的源码放在同一个目录)。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir &#123;somewhere&#125; <span class="comment"># 用实际的路径替换 &#123;somewhere&#125;</span></span><br><span class="line">$ <span class="built_in">cd</span> &#123;somewhere&#125;</span><br><span class="line">$ git <span class="built_in">clone</span> git://github.com/facebook/libphutil.git</span><br><span class="line">$ git <span class="built_in">clone</span> git://github.com/facebook/arcanist.git</span><br></pre></td></tr></table></figure>
+<p>下载完源码后，配置<code>PATH</code>, 我们在命令行中，可以使用它。在个人的<code>～/.bashrc</code>或<code>~/.zshrc</code>，或者系统的<code>/etc/profile</code>中，加入下面内容。</p>
+<pre><code>export PATH=$PATH:/{somewhere}/arcanist/bin/
+</code></pre><p>在命令行，输入 <code>arc help</code> 验证是否安装成功。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><ul>
+<li>配置默认编辑器，这里选择<code>vim</code>,也可以选择其他的。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  arc <span class="built_in">set</span>-config editor <span class="string">"vim"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置默认的<code>Phabricator</code> 的URI，URI为Phabricator的地址</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ arc <span class="built_in">set</span>-config default http://phabricator.example.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>项目的根目录创建<code>.arcconfig</code> 配置文件，文件中填入如下内容</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"project_id"</span> : <span class="string">"your project name"</span>,</span><br><span class="line">  <span class="string">"conduit_uri"</span> : <span class="string">"your phabricator url"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>项目中，还可以配置静态代码监测引擎(lint)和单元测试引擎。</p>
+<p>为项目安装证书，用于 <code>Phabricator</code> 认证。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ arc install-certificate</span><br></pre></td></tr></table></figure>
+<h1 id="arc-的使用"><a href="#arc-的使用" class="headerlink" title="arc 的使用"></a>arc 的使用</h1><ul>
+<li><strong>查看帮助信息</strong></li>
+</ul>
+<p><code>arc help [--full | [COMMAND]]</code> 查看帮助文档，参数<code>--full</code>查看所有命令的详细用法; 具体的命令<code>[COMMAND]</code>，如｀arc help diff｀可以查看该命令的详细用法。</p>
+<ul>
+<li><strong>提交review信息</strong></li>
+</ul>
+<p>修改完代码后，使用<code>arc diff &lt;path&gt;</code> 命令提交 review request，该命令会产生一个包含如下内容的文件要求填写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;Enter Revision Title&gt;&gt;         </span><br><span class="line"></span><br><span class="line">Summary:</span><br><span class="line"></span><br><span class="line">Test Plan:</span><br><span class="line"></span><br><span class="line">Reviewers:</span><br><span class="line"></span><br><span class="line">CC:</span><br><span class="line"></span><br><span class="line">Maniphest Tasks:</span><br><span class="line"></span><br><span class="line"># NEW DIFFERENTIAL REVISION</span><br><span class="line"># Describe the changes in this new revision.</span><br><span class="line">#</span><br><span class="line"># arc could not identify any existing revision in your working copy.</span><br><span class="line"># If you intended to update an existing revision, use:</span><br><span class="line">#</span><br><span class="line">#   $ arc diff --update &lt;revision&gt;</span><br></pre></td></tr></table></figure>
+<p>　按照提示填写后，保存退出，<code>arc</code>就会自动提交<code>request</code>。<code>Reviewers</code>用逗号隔开，<code>Maniphest Tasks</code>填相关联的Phabricator上的<code>task_id</code>，如 T100。Test plan暂时没用过，详情查看<a href="http://www.phabricator.com/docs/phabricator/article/Differential_User_Guide_Test_Plans.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<p>如果想和某一个分支比较，可以在命令中加上分支的名称，如 <code>arc diff poll-dev --create</code>, 当前分支会和<code>poll-dev</code> 分支比较，然后创建一个 <code>code review</code></p>
+<p>　提交完成后，会产生一个形如<code>http://phabricator.example.com/D24</code>的url，url中的<code>D24</code>是<code>revision_id</code>。</p>
+<ul>
+<li><code>arc diff --update &lt;revision_id&gt;</code> 更新对应的review request。该命令产生一个如下的文件，按提示填写保存退出，arc会提交更新。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Updating D27: hahahah</span><br><span class="line">#</span><br><span class="line"># Enter a brief description of the changes included in this update.</span><br><span class="line"># The first line is used as subject, next lines as comment.</span><br><span class="line">#</span><br><span class="line"># If you intended to create a new revision, use:</span><br><span class="line">#  $ arc diff --create</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>arc commit --revision &lt;revision_id&gt;</code> 提交对应提交代码更改，这个命令把<strong>svn commit</strong>的工作也做掉了，直接提交到代码库。如果代码仓库使用<strong>git</strong>，则该命令是<code>arc land</code></p>
+</li>
+<li><p><code>arc todo &lt;description&gt; [option]</code>可以快速给自己在phabricator上创建task，[option]用于把task CC给其他人.</p>
+</li>
+<li><code>arc tasks [options]</code> 查看Maniphest的tasks。</li>
+<li><code>arc amend --show</code> 查看当前项目的differentials，</li>
+<li><code>arc amend --revision &lt;revision_id&gt; --show</code> 查看指定revision_id的differential。</li>
+</ul>
+<p>其他几个有用的用法，未在项目中使用过。</p>
+<blockquote>
+<ul>
+<li>show pending revision information with <code>arc list</code></li>
+<li>find likely reviewers for a change with <code>arc cover</code></li>
+<li>apply changes in a revision to the working copy with <code>arc patch</code></li>
+<li>download a patch from Differential with <code>arc export</code>&gt; </li>
+<li>update Git commit messages after review with <code>arc amend</code></li>
+<li>view enhanced information about Git branches with <code>arc branch</code></li>
+</ul>
+<p>Once you’ve configured lint and unit test integration, you can also:</p>
+<ul>
+<li>check your code for syntax and style errors with <code>arc lint</code> (see <a href="https://secure.phabricator.com/diviner/find/?name=Arcanist_User_Guide%3A_Lint&amp;type=article&amp;jump=1" target="_blank" rel="noopener">Arcanist User Guide: Lint</a>)</li>
+<li>run unit tests that cover your changes with <code>arc unit</code></li>
+</ul>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://secure.phabricator.com/book/phabricator/article/arcanist/" target="_blank" rel="noopener">Arcanist User Guide Phabricator User Documentation (Application User Guides)</a></li>
+<li><a href="http://udn.yyuap.com/thread-39791-1-1.html" target="_blank" rel="noopener">白青青 - Phabricator命令行工具Arcanist的基本用法</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/tools/" rel="tag"># tools</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../db/mysql_sqlserver_diff.html" rel="prev" title="SQL Server 与 MySQL 在SQL方面的差异">
+                SQL Server 与 MySQL 在SQL方面的差异 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="../images/avatar.jpg"
+                alt="River Liu" />
+            
+              <p class="site-author-name" itemprop="name">River Liu</p>
+              <p class="site-description motion-element" itemprop="description">一个软件工程师的开发/学习记录</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="../archives">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:ljathit@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/riverliu" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/riverlcn" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Linux-Mac-OS-X"><span class="nav-number">1.</span> <span class="nav-text">安装(Linux/Mac OS X)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#arc-的使用"><span class="nav-number">3.</span> <span class="nav-text">arc 的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">River Liu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" rel="external nofollow" href="https://github.com/RiverLiu/riverliu.github.com"><b>Github Pages</b></a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytHLvKa7';
+      var conf = 'ee5d9e08b317282162d3a5501f6c0aa6';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("u6jfl2l2gaOHQ52kc2sQ8Ggl-gzGzoHsz", "JbefDwS371ofL254gzH5PRte");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="../js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="../js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('Copied')
+          else $(this).text('Copy failed')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('Copy')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
