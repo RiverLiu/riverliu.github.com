@@ -10,17 +10,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../../images/apple-touch-icon-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="../../../images/favicon-16x16.png?v=7.4.0">
-  <link rel="mask-icon" href="../../../images/logo.svg?v=7.4.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="../images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="../atom.xml" title="小风筝说" type="application/atom+xml">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
-<link rel="stylesheet" href="../../../css/main.css?v=7.4.0">
+<link rel="stylesheet" href="../css/main.css?v=7.4.0">
 
 
-<link rel="stylesheet" href="../../../lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 
@@ -46,8 +47,8 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
@@ -58,18 +59,19 @@
   };
 </script>
 
-  <meta name="description" content="一个软件工程师的开发/学习记录">
+  <meta name="description" content="程序员一枚">
 <meta name="keywords" content="riverlcn">
 <meta property="og:type" content="website">
-<meta property="og:title" content="川流不息">
-<meta property="og:url" content="http://www.riverlcn.com/archives/2018/07/index.html">
-<meta property="og:site_name" content="川流不息">
-<meta property="og:description" content="一个软件工程师的开发/学习记录">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://www.riverlcn.com/about/index.html">
+<meta property="og:site_name" content="小风筝说">
+<meta property="og:description" content="程序员一枚">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-05T12:04:30.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="川流不息">
-<meta name="twitter:description" content="一个软件工程师的开发/学习记录">
-  <link rel="canonical" href="http://www.riverlcn.com/archives/2018/07/">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="程序员一枚">
+  <link rel="canonical" href="http://www.riverlcn.com/about/">
 
 
 <script id="page-configurations">
@@ -78,12 +80,12 @@
     sidebar: "",
     isHome: false,
     isPost: false,
-    isPage: false,
-    isArchive: true
+    isPage: true,
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 川流不息</title>
+  <title>about | 小风筝说</title>
   
 
 
@@ -130,7 +132,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">川流不息</span>
+        <span class="site-title">小风筝说</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -204,9 +206,36 @@
     <a rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -250,70 +279,56 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        
-        
-        
-          
-        
-        <span class="collection-header">嗯..! 目前共计 4 篇日志。 继续努力。</span>
-      </div>
-      
-
-      
-
-  
-  
-
-  
+  <div id="posts" class="posts-expand">
     
-    <div class="collection-year">
-      <h2 class="collection-header">2018</h2>
-    </div>
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">about
+
+</h2>
+
+<div class="post-meta">
   
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+</div>
 
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="../../../other/hexo_quick_start.html" itemprop="url">
-            <span itemprop="name">Hexo Quick Start</span>
-          </a>
-        
-      </h3>
+</header>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-09T01:16:04+08:00"
-              content="2018-07-09">
-          07-09
-        </time>
+      
+      
+      
+      <div class="post-body">
+        
+          <p>程序员一枚</p>
+
+        
       </div>
-
-    </header>
-  </article>
-
-
-
-
+      
+      
+      
     </div>
+    
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
           
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
 
         </div>
           
@@ -328,6 +343,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -345,16 +365,18 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="../../../images/avatar.jpg"
-      alt="River Liu">
+    <a href="/about/">
+      <img class="site-author-image" itemprop="image"
+        src="../images/avatar.jpg"
+        alt="River Liu">
+    </a>
   <p class="site-author-name" itemprop="name">River Liu</p>
   <div class="site-description" itemprop="description">一个软件工程师的开发/学习记录</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
-          <a href="../..">
+          <a href="../archives">
         
           <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
@@ -380,6 +402,11 @@
       </div>
     
   </nav>
+  <div class="feed-link motion-element">
+    <a href="../atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
       
@@ -408,6 +435,15 @@
         <a href="https://weibo.com/riverlcn" title="Weibo &rarr; https://weibo.com/riverlcn" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://www.jianshu.com/u/29631b178a62" title="JianShu &rarr; https://www.jianshu.com/u/29631b178a62" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i></a>
+      </span>
+    
   </div>
 
 
@@ -426,7 +462,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">River Liu</span>
 </div>
@@ -474,15 +510,15 @@
   
 
 
-  <script src="../../../lib/anime.min.js?v=3.1.0"></script>
-  <script src="../../../lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="../../../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="../lib/anime.min.js?v=3.1.0"></script>
+  <script src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-<script src="../../../js/utils.js?v=7.4.0"></script><script src="../../../js/motion.js?v=7.4.0"></script>
-<script src="../../../js/schemes/pisces.js?v=7.4.0"></script>
+<script src="../js/utils.js?v=7.4.0"></script><script src="../js/motion.js?v=7.4.0"></script>
+<script src="../js/schemes/pisces.js?v=7.4.0"></script>
 
-<script src="../../../js/next-boot.js?v=7.4.0"></script><script src="../../../js/bookmark.js?v=7.4.0"></script>
+<script src="../js/next-boot.js?v=7.4.0"></script><script src="../js/bookmark.js?v=7.4.0"></script>
 
 
 
@@ -494,6 +530,8 @@
 
 
 
+
+  <script src="../js/local-search.js?v=7.4.0"></script>
 
 
 
@@ -526,6 +564,29 @@
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
 </script>
+<script>
+  function disqus_config() {
+    this.page.url = "http://www.riverlcn.com/about/index.html";
+    this.page.identifier = "about/index.html";
+    this.page.title = 'about';};
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://riverlcn-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script>
 
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/love.js"></script>
 </body>
 </html>
