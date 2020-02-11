@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hexo Quick Start]]></title>
-    <url>%2Fother%2Fhexo_quick_start.html</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <title>Hexo Quick Start</title>
+    <url>/other/hexo_quick_start.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<a id="more"></a>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
       <categories>
         <category>other</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Java 程序员学习教程汇总]]></title>
-    <url>%2Fjava%2Fjava_knowledge.html</url>
-    <content type="text"><![CDATA[Java Gradle 用户指南官方文档中文版 – DONGChuan DB Cassandra 学习 – Teddy]]></content>
+    <title>Java 程序员学习教程汇总</title>
+    <url>/java/java_knowledge.html</url>
+    <content><![CDATA[<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><ul>
+<li><a href="https://dongchuan.gitbooks.io/gradle-user-guide-/" target="_blank" rel="noopener">Gradle 用户指南官方文档中文版 – DONGChuan</a></li>
+</ul>
+<h1 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h1><ul>
+<li><a href="http://teddymaef.github.io/learncassandra/cn/about/about_cassandra.html" target="_blank" rel="noopener">Cassandra 学习 – Teddy</a><a id="more"></a>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -20,9 +37,85 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SQL Server 与 MySQL 在SQL方面的差异]]></title>
-    <url>%2Fdb%2Fmysql_sqlserver_diff.html</url>
-    <content type="text"><![CDATA[SQL Server 与 MySQL 在SQL方面的差异SQL Server在时间类型上支持默认值 getDate()MySQL 5.5 在DateTime 不支持默认值，MySQL在 5.6之后的版本支持该功能，现在用触发器替代。 1. 自动变量使用的关键字不相同 mysql 使用关键字(keyword) AUTO_INCREMENT 表示变量自增，初始值为1，每次自增1，可以通过ALTER TABLE Persons AUTO_INCREMENT=100 修改初始值。 12345678CREATE TABLE Persons ( ID int NOT NULL AUTO_INCREMENT, LastName varchar(255) NOT NULL, FirstName varchar(255), Address varchar(255), City varchar(255), PRIMARY KEY (ID)) sql server 使用关键字 IDENTITY 表示变量自增，IDENTITY(1,1) 第一个参数表示自增变量的初始值，第二个变量表示每次加的值，这里为1 1234567CREATE TABLE Persons ( ID int IDENTITY(1,1) PRIMARY KEY, LastName varchar(255) NOT NULL, FirstName varchar(255), Address varchar(255), City varchar(255)) 2. 获取当前时间函数 SQLServer 使用：getdate() MySQL 使用：now() 3. 从数据库定位到表(schema) Sqlserver写法：库名.schema.表名 ；或者：库名..表名 （注：中间使用两个点)，默认的schema为 dbo select password from Info.dbo.users where userName=&apos;boss&apos; 或者 select password from Info..users where userName=&apos;boss&apos; mysql写法：库名.表名 mysql 把schema当做一个数据库 select password from Info.users where userName=&apos;boss&apos; 4. 判断是否存在某个数据库，若存在，则删除 Sqlserver写法： IF DB_ID(&apos;users&apos;) IS NOT NULL DROP DATABASE users Mysql写法： Drop DATABASEif exists users 拓展：若sqlserver数据库正在使用中，删除之前，先要把数据库变成“单一用户”，再删除 ALTER DATABASE users SET SINGLE_USER with ROLLBACK IMMEDIATE IF DB_ID(&apos;users&apos;) IS NOT NULL DROP DATABASE users 另附：判断某数据库中是否存在某张表，若存在，则删除 Sqlserver写法： if exists(select * from sysobjects where name =&apos;Users_test&apos;) drop table Users_test Mysql写法： DROP TABLE IF EXISTS Users_test 5. 主键存在，则更新，不存在，则插入 Mysql写法: INSERT into users (userID,userName,password) VALUES (1,’jmj’,’123’) ON DUPLICATE KEY UPDATE userName =&apos;jmj&apos;, password =123 SqlServer没有mysql这样的关键字，只能组合sql语句来实现操作: if not exists (select userID from users where userID= 1)insert into users (userID,userName,password) values(1,’jmj’,’123’) else update users set userName = ’jmj’, password=’123’ where userID = 1 6. 符号的使用 mysql对参数可以使用单引号，也可以使用双引号，对字段名和表名可以使用反引号。 sqlserver只能使用单引号，且不能使用反引号，如果字段是关键字的话，需要使用中括号。 Mysql写法： Select `password` from Users where userName=&apos;boss&apos; or username=”jmj” Sqlserver写法: Select password from Users where userName=&apos;boss&apos; or username=’jmj’ 7. 取出查询结果中的第一条数据或者前几条记录（取前几条记录只需要修改对应的数字即可)，使用的关键字不同 SQLServer写法(top)： select top 1 password from users where userName=&apos;boss&apos; MySQL写法(limit)： select password from users where userName=&apos;111&apos;limit 0,1 8. 查询所有库 SQLServer写法: select * from [master]..[SysDatabases]; MySQL写法: SHOW DATABASES; 9. 查询指定库中的所有表 SQLServer写法： select * from 库名.dbo.[SysObjects] where[type]=&apos;U&apos;; （注：若想知道[type]=’U’代表什么意思，请点击http://blog.csdn.net/winddai/article/details/5815138） MySQL写法: SHOW TABLES 10. 某些关键词的使用 10.1 截取字符串 SQLServer只能使用SUBSTRING关键词来截取字符串 MySQL可以使用SUBSTRING和SUBSTR截取字符串 10.2 取得字符串的长度 SQLServer只能使用Len关键词取得字符串的长度。 MySQL可以使用Length取得字符串的长度。]]></content>
+    <title>SQL Server 与 MySQL 在SQL方面的差异</title>
+    <url>/db/mysql_sqlserver_diff.html</url>
+    <content><![CDATA[<h2 id="SQL-Server-与-MySQL-在SQL方面的差异"><a href="#SQL-Server-与-MySQL-在SQL方面的差异" class="headerlink" title="SQL Server 与 MySQL 在SQL方面的差异"></a>SQL Server 与 MySQL 在SQL方面的差异</h2><p>SQL Server在时间类型上支持默认值 getDate()<br>MySQL 5.5 在DateTime 不支持默认值，MySQL在 5.6之后的版本支持该功能，现在用触发器替代。</p>
+<a id="more"></a>
+<p>1. 自动变量使用的关键字不相同</p>
+<p>mysql 使用关键字(keyword) <code>AUTO_INCREMENT</code> 表示变量自增，初始值为1，每次自增1，可以通过<code>ALTER TABLE Persons AUTO_INCREMENT=100</code> 修改初始值。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons (</span><br><span class="line">     <span class="keyword">ID</span> <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">     LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">     FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">     Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">     City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">     PRIMARY <span class="keyword">KEY</span> (<span class="keyword">ID</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>sql server 使用关键字 <code>IDENTITY</code> 表示变量自增，<code>IDENTITY(1,1)</code> 第一个参数表示自增变量的初始值，第二个变量表示每次加的值，这里为1</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons (</span><br><span class="line">    <span class="keyword">ID</span> <span class="built_in">int</span> <span class="keyword">IDENTITY</span>(<span class="number">1</span>,<span class="number">1</span>) PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">    Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">    City <span class="built_in">varchar</span>(<span class="number">255</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>2. 获取当前时间函数</p>
+<ul>
+<li>SQLServer 使用：<code>getdate()</code></li>
+<li>MySQL 使用：<code>now()</code></li>
+</ul>
+<p>3. 从数据库定位到表(schema)</p>
+<p>Sqlserver写法：<strong>库名.schema.表名 ；或者：库名..表名</strong> （注：中间使用两个点)，默认的schema为 <code>dbo</code></p>
+<pre><code>select password from Info.dbo.users where userName=&apos;boss&apos;
+</code></pre><p>或者</p>
+<pre><code>select password from Info..users where userName=&apos;boss&apos;
+</code></pre><p>mysql写法：<strong>库名.表名</strong> mysql 把schema当做一个数据库</p>
+<pre><code>select password from Info.users where userName=&apos;boss&apos;
+</code></pre><p>4. 判断是否存在某个数据库，若存在，则删除</p>
+<p>Sqlserver写法：</p>
+<pre><code>IF DB_ID(&apos;users&apos;) IS NOT NULL
+DROP DATABASE users
+</code></pre><p>Mysql写法：</p>
+<pre><code>Drop DATABASEif exists users
+</code></pre><p>拓展：若sqlserver数据库正在使用中，删除之前，先要把数据库变成“单一用户”，再删除</p>
+<pre><code>ALTER DATABASE users SET SINGLE_USER with ROLLBACK IMMEDIATE IF DB_ID(&apos;users&apos;) IS NOT NULL DROP DATABASE users
+</code></pre><p>另附：判断某数据库中是否存在某张表，若存在，则删除</p>
+<p>Sqlserver写法：</p>
+<pre><code>if exists(select * from sysobjects where name =&apos;Users_test&apos;)
+drop table Users_test
+</code></pre><p>Mysql写法：</p>
+<pre><code>DROP TABLE IF EXISTS Users_test
+</code></pre><p>5. 主键存在，则更新，不存在，则插入</p>
+<p>Mysql写法:    </p>
+<pre><code>INSERT into users (userID,userName,password) VALUES (1,’jmj’,’123’) ON DUPLICATE KEY UPDATE  userName =&apos;jmj&apos;, password =123
+</code></pre><p>SqlServer没有mysql这样的关键字，只能组合sql语句来实现操作:</p>
+<pre><code>if not exists (select userID from users where userID= 1)insert into users (userID,userName,password) values(1,’jmj’,’123’) else update users set userName = ’jmj’, password=’123’ where userID = 1
+</code></pre><p>6. 符号的使用</p>
+<p>mysql对参数可以使用单引号，也可以使用双引号，对字段名和表名可以使用反引号。</p>
+<p>sqlserver只能使用单引号，且不能使用反引号，如果字段是关键字的话，需要使用中括号。</p>
+<ul>
+<li>Mysql写法：  </li>
+</ul>
+<pre><code>Select `password` from Users where userName=&apos;boss&apos; or username=”jmj”
+</code></pre><ul>
+<li>Sqlserver写法:</li>
+</ul>
+<pre><code>Select password from Users where userName=&apos;boss&apos; or username=’jmj’
+</code></pre><p>7. 取出查询结果中的第一条数据或者前几条记录（取前几条记录只需要修改对应的数字即可)，使用的关键字不同</p>
+<p>SQLServer写法(<code>top</code>)：</p>
+<pre><code>select top 1 password from users where userName=&apos;boss&apos;  
+</code></pre><p>MySQL写法(<code>limit</code>)：</p>
+<pre><code>select password from users where userName=&apos;111&apos;limit 0,1
+</code></pre><p>8. 查询所有库</p>
+<p>SQLServer写法:</p>
+<pre><code>select * from [master]..[SysDatabases];
+</code></pre><p>MySQL写法:</p>
+<pre><code>SHOW DATABASES;
+</code></pre><p>9. 查询指定库中的所有表</p>
+<p>SQLServer写法：</p>
+<pre><code>select * from 库名.dbo.[SysObjects] where[type]=&apos;U&apos;;
+</code></pre><p>（注：若想知道[type]=’U’代表什么意思，请点击<a href="http://blog.csdn.net/winddai/article/details/5815138）" target="_blank" rel="noopener">http://blog.csdn.net/winddai/article/details/5815138）</a></p>
+<p>MySQL写法:</p>
+<pre><code>SHOW TABLES
+</code></pre><p>10. 某些关键词的使用</p>
+<p>10.1 截取字符串</p>
+<ul>
+<li>SQLServer只能使用<code>SUBSTRING</code>关键词来截取字符串</li>
+<li>MySQL可以使用<code>SUBSTRING</code>和<code>SUBSTR</code>截取字符串</li>
+</ul>
+<p>10.2 取得字符串的长度</p>
+<ul>
+<li>SQLServer只能使用<code>Len</code>关键词取得字符串的长度。</li>
+<li>MySQL可以使用<code>Length</code>取得字符串的长度。</li>
+</ul>
+]]></content>
       <categories>
         <category>db</category>
       </categories>
@@ -32,9 +125,76 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Phabricator Arcanist 基础使用]]></title>
-    <url>%2Ftools%2Fphabricator_arcanist.html</url>
-    <content type="text"><![CDATA[Arcanist 是访问Pabricator的命令行工具，它集成了静态分析(lint)，单元测试及代码review工作流类的功能，点击查看Arcanist官方文档。 安装(Linux/Mac OS X)Arcanist 需要php支持，安装Arcanist之前，需要先安装 php。之后将arcanist 的源码下载到本地(将下载的源码放在同一个目录)。 1234$ mkdir &#123;somewhere&#125; # 用实际的路径替换 &#123;somewhere&#125;$ cd &#123;somewhere&#125;$ git clone git://github.com/facebook/libphutil.git$ git clone git://github.com/facebook/arcanist.git 下载完源码后，配置PATH, 我们在命令行中，可以使用它。在个人的～/.bashrc或~/.zshrc，或者系统的/etc/profile中，加入下面内容。 export PATH=$PATH:/{somewhere}/arcanist/bin/ 在命令行，输入 arc help 验证是否安装成功。 配置 配置默认编辑器，这里选择vim,也可以选择其他的。 1$ arc set-config editor "vim" 配置默认的Phabricator 的URI，URI为Phabricator的地址 1$ arc set-config default http://phabricator.example.com 项目的根目录创建.arcconfig 配置文件，文件中填入如下内容 1234&#123; "project_id" : "your project name", "conduit_uri" : "your phabricator url"&#125; 项目中，还可以配置静态代码监测引擎(lint)和单元测试引擎。 为项目安装证书，用于 Phabricator 认证。 1$ arc install-certificate arc 的使用 查看帮助信息 arc help [--full | [COMMAND]] 查看帮助文档，参数--full查看所有命令的详细用法; 具体的命令[COMMAND]，如｀arc help diff｀可以查看该命令的详细用法。 提交review信息 修改完代码后，使用arc diff &lt;path&gt; 命令提交 review request，该命令会产生一个包含如下内容的文件要求填写： 12345678910111213141516171819&lt;&lt;Enter Revision Title&gt;&gt; Summary:Test Plan:Reviewers:CC:Maniphest Tasks:# NEW DIFFERENTIAL REVISION# Describe the changes in this new revision.## arc could not identify any existing revision in your working copy.# If you intended to update an existing revision, use:## $ arc diff --update &lt;revision&gt; 按照提示填写后，保存退出，arc就会自动提交request。Reviewers用逗号隔开，Maniphest Tasks填相关联的Phabricator上的task_id，如 T100。Test plan暂时没用过，详情查看官方文档。 如果想和某一个分支比较，可以在命令中加上分支的名称，如 arc diff poll-dev --create, 当前分支会和poll-dev 分支比较，然后创建一个 code review 提交完成后，会产生一个形如http://phabricator.example.com/D24的url，url中的D24是revision_id。 arc diff --update &lt;revision_id&gt; 更新对应的review request。该命令产生一个如下的文件，按提示填写保存退出，arc会提交更新。 1234567# Updating D27: hahahah## Enter a brief description of the changes included in this update.# The first line is used as subject, next lines as comment.## If you intended to create a new revision, use:# $ arc diff --create arc commit --revision &lt;revision_id&gt; 提交对应提交代码更改，这个命令把svn commit的工作也做掉了，直接提交到代码库。如果代码仓库使用git，则该命令是arc land arc todo &lt;description&gt; [option]可以快速给自己在phabricator上创建task，[option]用于把task CC给其他人. arc tasks [options] 查看Maniphest的tasks。 arc amend --show 查看当前项目的differentials， arc amend --revision &lt;revision_id&gt; --show 查看指定revision_id的differential。 其他几个有用的用法，未在项目中使用过。 show pending revision information with arc list find likely reviewers for a change with arc cover apply changes in a revision to the working copy with arc patch download a patch from Differential with arc export&gt; update Git commit messages after review with arc amend view enhanced information about Git branches with arc branch Once you’ve configured lint and unit test integration, you can also: check your code for syntax and style errors with arc lint (see Arcanist User Guide: Lint) run unit tests that cover your changes with arc unit 参考 Arcanist User Guide Phabricator User Documentation (Application User Guides) 白青青 - Phabricator命令行工具Arcanist的基本用法]]></content>
+    <title>Phabricator Arcanist 基础使用</title>
+    <url>/tools/phabricator_arcanist.html</url>
+    <content><![CDATA[<p><strong>Arcanist</strong> 是访问<code>Pabricator</code>的命令行工具，它集成了静态分析(lint)，单元测试及代码review工作流类的功能，<a href="http://www.phabricator.com/docs/phabricator/article/Arcanist_User_Guide.html" target="_blank" rel="noopener">点击查看Arcanist官方文档</a>。</p>
+<a id="more"></a>
+<h1 id="安装-Linux-Mac-OS-X"><a href="#安装-Linux-Mac-OS-X" class="headerlink" title="安装(Linux/Mac OS X)"></a>安装(Linux/Mac OS X)</h1><p><strong>Arcanist</strong> 需要<code>php</code>支持，安装Arcanist之前，需要先安装 php。之后将<code>arcanist</code> 的源码下载到本地(将下载的源码放在同一个目录)。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ mkdir &#123;somewhere&#125; <span class="comment"># 用实际的路径替换 &#123;somewhere&#125;</span></span><br><span class="line">$ <span class="built_in">cd</span> &#123;somewhere&#125;</span><br><span class="line">$ git <span class="built_in">clone</span> git://github.com/facebook/libphutil.git</span><br><span class="line">$ git <span class="built_in">clone</span> git://github.com/facebook/arcanist.git</span><br></pre></td></tr></table></figure>
+<p>下载完源码后，配置<code>PATH</code>, 我们在命令行中，可以使用它。在个人的<code>～/.bashrc</code>或<code>~/.zshrc</code>，或者系统的<code>/etc/profile</code>中，加入下面内容。</p>
+<pre><code>export PATH=$PATH:/{somewhere}/arcanist/bin/
+</code></pre><p>在命令行，输入 <code>arc help</code> 验证是否安装成功。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><ul>
+<li>配置默认编辑器，这里选择<code>vim</code>,也可以选择其他的。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$  arc <span class="built_in">set</span>-config editor <span class="string">"vim"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置默认的<code>Phabricator</code> 的URI，URI为Phabricator的地址</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ arc <span class="built_in">set</span>-config default http://phabricator.example.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>项目的根目录创建<code>.arcconfig</code> 配置文件，文件中填入如下内容</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"project_id"</span> : <span class="string">"your project name"</span>,</span><br><span class="line">  <span class="string">"conduit_uri"</span> : <span class="string">"your phabricator url"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>项目中，还可以配置静态代码监测引擎(lint)和单元测试引擎。</p>
+<p>为项目安装证书，用于 <code>Phabricator</code> 认证。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ arc install-certificate</span><br></pre></td></tr></table></figure>
+<h1 id="arc-的使用"><a href="#arc-的使用" class="headerlink" title="arc 的使用"></a>arc 的使用</h1><ul>
+<li><strong>查看帮助信息</strong></li>
+</ul>
+<p><code>arc help [--full | [COMMAND]]</code> 查看帮助文档，参数<code>--full</code>查看所有命令的详细用法; 具体的命令<code>[COMMAND]</code>，如｀arc help diff｀可以查看该命令的详细用法。</p>
+<ul>
+<li><strong>提交review信息</strong></li>
+</ul>
+<p>修改完代码后，使用<code>arc diff &lt;path&gt;</code> 命令提交 review request，该命令会产生一个包含如下内容的文件要求填写：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;&lt;Enter Revision Title&gt;&gt;         </span><br><span class="line"></span><br><span class="line">Summary:</span><br><span class="line"></span><br><span class="line">Test Plan:</span><br><span class="line"></span><br><span class="line">Reviewers:</span><br><span class="line"></span><br><span class="line">CC:</span><br><span class="line"></span><br><span class="line">Maniphest Tasks:</span><br><span class="line"></span><br><span class="line"># NEW DIFFERENTIAL REVISION</span><br><span class="line"># Describe the changes in this new revision.</span><br><span class="line">#</span><br><span class="line"># arc could not identify any existing revision in your working copy.</span><br><span class="line"># If you intended to update an existing revision, use:</span><br><span class="line">#</span><br><span class="line">#   $ arc diff --update &lt;revision&gt;</span><br></pre></td></tr></table></figure>
+<p>　按照提示填写后，保存退出，<code>arc</code>就会自动提交<code>request</code>。<code>Reviewers</code>用逗号隔开，<code>Maniphest Tasks</code>填相关联的Phabricator上的<code>task_id</code>，如 T100。Test plan暂时没用过，详情查看<a href="http://www.phabricator.com/docs/phabricator/article/Differential_User_Guide_Test_Plans.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<p>如果想和某一个分支比较，可以在命令中加上分支的名称，如 <code>arc diff poll-dev --create</code>, 当前分支会和<code>poll-dev</code> 分支比较，然后创建一个 <code>code review</code></p>
+<p>　提交完成后，会产生一个形如<code>http://phabricator.example.com/D24</code>的url，url中的<code>D24</code>是<code>revision_id</code>。</p>
+<ul>
+<li><code>arc diff --update &lt;revision_id&gt;</code> 更新对应的review request。该命令产生一个如下的文件，按提示填写保存退出，arc会提交更新。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Updating D27: hahahah</span><br><span class="line">#</span><br><span class="line"># Enter a brief description of the changes included in this update.</span><br><span class="line"># The first line is used as subject, next lines as comment.</span><br><span class="line">#</span><br><span class="line"># If you intended to create a new revision, use:</span><br><span class="line">#  $ arc diff --create</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>arc commit --revision &lt;revision_id&gt;</code> 提交对应提交代码更改，这个命令把<strong>svn commit</strong>的工作也做掉了，直接提交到代码库。如果代码仓库使用<strong>git</strong>，则该命令是<code>arc land</code></p>
+</li>
+<li><p><code>arc todo &lt;description&gt; [option]</code>可以快速给自己在phabricator上创建task，[option]用于把task CC给其他人.</p>
+</li>
+<li><code>arc tasks [options]</code> 查看Maniphest的tasks。</li>
+<li><code>arc amend --show</code> 查看当前项目的differentials，</li>
+<li><code>arc amend --revision &lt;revision_id&gt; --show</code> 查看指定revision_id的differential。</li>
+</ul>
+<p>其他几个有用的用法，未在项目中使用过。</p>
+<blockquote>
+<ul>
+<li>show pending revision information with <code>arc list</code></li>
+<li>find likely reviewers for a change with <code>arc cover</code></li>
+<li>apply changes in a revision to the working copy with <code>arc patch</code></li>
+<li>download a patch from Differential with <code>arc export</code>&gt; </li>
+<li>update Git commit messages after review with <code>arc amend</code></li>
+<li>view enhanced information about Git branches with <code>arc branch</code></li>
+</ul>
+<p>Once you’ve configured lint and unit test integration, you can also:</p>
+<ul>
+<li>check your code for syntax and style errors with <code>arc lint</code> (see <a href="https://secure.phabricator.com/diviner/find/?name=Arcanist_User_Guide%3A_Lint&amp;type=article&amp;jump=1" target="_blank" rel="noopener">Arcanist User Guide: Lint</a>)</li>
+<li>run unit tests that cover your changes with <code>arc unit</code></li>
+</ul>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://secure.phabricator.com/book/phabricator/article/arcanist/" target="_blank" rel="noopener">Arcanist User Guide Phabricator User Documentation (Application User Guides)</a></li>
+<li><a href="http://udn.yyuap.com/thread-39791-1-1.html" target="_blank" rel="noopener">白青青 - Phabricator命令行工具Arcanist的基本用法</a></li>
+</ul>
+]]></content>
       <categories>
         <category>tools</category>
       </categories>
